@@ -95,11 +95,7 @@ export class CadastroPrincipalComponent {
       }
      
     }
-   
-
-    
-
-    console.log(this.usuarios)
+  
     this.usuarios = [...this.usuarios];
 
    }
@@ -124,6 +120,8 @@ export class CadastroPrincipalComponent {
     let indexUser = this.usuarios.findIndex(user => user.id === id);
 
     this.usuarios.splice(indexUser, 1)
+
+    this.usuarios = [...this.usuarios];
 
    }
 

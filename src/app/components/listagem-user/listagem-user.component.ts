@@ -24,11 +24,11 @@ export class ListagemUserComponent implements OnChanges{
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
+    this.cdr.detectChanges(); 
     if (changes['dataSource']) {
       console.log('Informação atualizada:', this.dataSource);
-      this.cdr.detectChanges(); 
       this.dataSource = [...this.dataSource];
-      // Executar lógica de atualização aqui
+  
     }
   }
 
@@ -42,6 +42,7 @@ export class ListagemUserComponent implements OnChanges{
 
   excluirItem(item:User){
     this.excluir.emit(item.id);
+
   }
 
 }
