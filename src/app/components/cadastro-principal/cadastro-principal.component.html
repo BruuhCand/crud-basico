@@ -1,0 +1,60 @@
+<form class="formulario" [formGroup]="formUser">
+    <table class="example-full-width" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>
+                    <mat-form-field class="input">
+                    <mat-label>Nome</mat-label>
+                    <input type="nome" matInput formControlName="nome">
+                    @if (formUser.get('nome')?.hasError('required')) {
+                        <mat-error>Nome is <strong>required</strong></mat-error>
+                    }
+                    </mat-form-field>
+                </td>
+           
+                <td>
+                    <mat-form-field class="input">
+                        <mat-label>CPF</mat-label>
+                        <input type="cpf" matInput formControlName="cpf" placeholder="000.000.000-00" mask="000.000.000-00">
+                        @if (formUser.get('nome')?.hasError('required')) {
+                          <mat-error>CPF is <strong>required</strong></mat-error>
+                        }
+                    </mat-form-field>
+                </td>
+            
+          
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="input">
+                        <mat-label>Data de Nascimento</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="data_nasc">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                </td>
+                <td>
+                    <label id="example-radio-group-label" class="input">Sexo:</label>
+                    <br>
+                    <mat-radio-group aria-label="Select an option" formControlName="sex" class="input">
+                        <mat-radio-button value="Fem">Fem</mat-radio-button>
+                        <mat-radio-button value="Masc">Masc</mat-radio-button>
+                        <mat-radio-button value="Outro">Outro</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </tr>
+        </tbody>
+       
+    </table>
+    
+    <div class="botao">
+        <button [disabled]="!formUser.valid"  (click)="SaveUser()" class="button-create">{{nomeBotao}}</button>
+      </div>    
+      
+  </form>
+
+  <div class="container">
+    <app-listagem-user [dataSource]="usuarios" (editar)="editarItem($event)" (excluir)="excluirItem($event)"></app-listagem-user>
+  </div>
+
